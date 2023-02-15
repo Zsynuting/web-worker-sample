@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>always open the same tab if the targe tab exists</p>
+    <p>and control the target tab to reload</p>
+    <button id="open">Open new Tab</button>
+    <script>
+      let guestWindow = null
+      document.querySelector('#open').addEventListener('click', () => {
+        if (guestWindow) {
+          guestWindow.postMessage('reload')
+          guestWindow.focus()
+        } else {
+          guestWindow = window.open('/guest.html', '_blank')
+        }
+      })
+    </script>
+  </body>
+</html>
