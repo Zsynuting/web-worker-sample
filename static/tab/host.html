@@ -17,9 +17,12 @@
           guestWindow.postMessage('reload')
           guestWindow.focus()
         } else {
-          guestWindow = window.open('/guest.html', '_blank')
+          guestWindow = window.open('/tab/guest.html', '_blank')
         }
       })
+      window.onbeforeunload = () => {
+        guestWindow.close()
+      }
     </script>
   </body>
 </html>

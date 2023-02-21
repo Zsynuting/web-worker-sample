@@ -1,0 +1,1 @@
+### 可以使用BroadcastChannel来进行页面之间的通信

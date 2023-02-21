@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>this is guest page</div>
+    <script>
+      const bc = new BroadcastChannel('bc')
+      bc.onmessage = (event) => {
+        const div = document.createElement('div')
+        const text = document.createTextNode(`message from host:${event.data}`)
+        div.appendChild(text)
+        document.body.appendChild(div)
+        if (event.data % 2) {
+          bc.postMessage('message from guest: ' + event.data)
+        }
+      }
+    </script>
+  </body>
+</html>

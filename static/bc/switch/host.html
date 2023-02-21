@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>this is host page</div>
+    <a href="/bc/switch/guest.html" target="_blank">open guest page</a>
+    <div>
+      <button onclick="handleSummon()">click to summon guest page</button>
+      <button onclick="handleSwitch()">click to switch to guest page</button>
+    </div>
+    <script>
+      const bc = new BroadcastChannel('bc')
+      const guests = []
+      bc.onmessage = (event) => {
+        guest.push(event.data)
+      }
+      const handleSummon = () => {
+        bc.postMessage('summon')
+      }
+      const handleSwitch = () => {
+        guests[0]?.focus()
+      }
+    </script>
+  </body>
+</html>

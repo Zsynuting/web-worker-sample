@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>this is host page</div>
+    <a href="/bc/send/guest.html" target="_blank">open guest page</a>
+    <button onclick="handleClick">click to focus guest page</button>
+    <script>
+      const bc = new BroadcastChannel('bc')
+      bc.onmessage = (event) => {
+        const div = document.createElement('div')
+        const text = document.createTextNode(event.data)
+        div.appendChild(text)
+        document.body.appendChild(div)
+      }
+      setInterval(() => {
+        bc.postMessage(new Date().getSeconds())
+      }, 1000)
+      const handleClick = () => {
+        bc.postMessage('focus')
+      }
+    </script>
+  </body>
+</html>

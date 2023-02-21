@@ -7,15 +7,14 @@
     <title>Document</title>
   </head>
   <body>
-    <div>this is a guest page</div>
+    <div>this is guest page</div>
     <script>
-      window.addEventListener('message', (event) => {
-        if (event.data === 'reload') {
-          window.alert('will reload')
-          window.location.reload()
+      const bc = new BroadcastChannel('bc')
+      bc.onmessage = (event) => {
+        if (event.data === 'summon') {
+          bc.postMessage(window)
         }
-      })
-      document.writeln(new Date().toLocaleString())
+      }
     </script>
   </body>
 </html>
